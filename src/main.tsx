@@ -50,7 +50,9 @@ const router = createBrowserRouter([
         <div className="w-full bg-neutral-200 overflow-y-scroll">
           <Infobar />
           <div className="w-full ">
-            <Teams />
+            <ProtectedRoute>
+              <Teams />
+            </ProtectedRoute>
           </div>
         </div>
       </div>
@@ -64,7 +66,9 @@ const router = createBrowserRouter([
         <div className="w-full bg-neutral-200 overflow-y-scroll">
           <Infobar />
           <div className="w-full ">
-            <Team />
+            <ProtectedRoute>
+              <Team />
+            </ProtectedRoute>
           </div>
         </div>
       </div>
@@ -78,7 +82,9 @@ const router = createBrowserRouter([
         <div className="w-full bg-neutral-200 overflow-y-scroll">
           <Infobar />
           <div className="w-full ">
-            <MyTasks />
+            <ProtectedRoute>
+              <MyTasks />
+            </ProtectedRoute>
           </div>
         </div>
       </div>
@@ -92,7 +98,9 @@ const router = createBrowserRouter([
         <div className="w-full bg-neutral-200 overflow-y-scroll">
           <Infobar />
           <div className="w-full ">
-            <TeamTasks />
+            <ProtectedRoute>
+              <TeamTasks />
+            </ProtectedRoute>
           </div>
         </div>
       </div>
