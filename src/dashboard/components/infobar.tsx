@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 
 const Infobar = () => {
   const [cookies, setCookie, removeCookie]  = useCookies(["_secretkey"]);
-
+  console.log(cookies, setCookie)
   const [showDrop, setshowDrop] = useState(false);
   const needFocus = useRef<HTMLButtonElement>(null);
   return (
