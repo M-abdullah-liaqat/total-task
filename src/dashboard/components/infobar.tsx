@@ -5,6 +5,13 @@ import { useState, useRef } from "react";
 const Infobar = () => {
   const [showDrop, setshowDrop] = useState(false);
   const needFocus = useRef<HTMLButtonElement>(null);
+  const HandlelogOut = async()=>{
+    await fetch("https://total-task-backend.onrender.com/logout", {
+      method : "POST",
+      credentials: "include"
+    })
+    window.location.href= "/"
+  }
   return (
     <div className="bg-white md:py-5 py-2 flex justify-between items-center md:px-15 px-6">
       <div className="flex bg-neutral-200 md:w-[350px] w-[60%] items-center gap-2 ring-black px-3 rounded-full">
@@ -36,7 +43,7 @@ const Infobar = () => {
             id="myDropdown"
             className={`dropdown-content ${
               showDrop ? "absolute" : "hidden"
-            } z-20 bg-neutral-100 divide-y divide-gray-200 rounded-lg shadow-2xl w-44`}
+            } z-20 bg-neutral-100 divide-y divide-gray-200 rounded-lg shadow-2xl w-44 right-[-3px]`}
           >
             <ul
               className="py-2 text-sm dark:text-gray-200"
@@ -44,11 +51,7 @@ const Infobar = () => {
             >
               <li>
                 <div
-                  onClick={() => {
-                    document.cookie =
-                      "_secretkey=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                    window.location.href = "/";
-                  }}
+                  onClick={HandlelogOut}
                   className="block px-4 text-red-600 cursor-pointer py-2 hover:bg-gray-200"
                 >
                   Log Out
