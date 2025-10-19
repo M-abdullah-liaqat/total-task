@@ -1,0 +1,126 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from "./dashboard/(pages)/Dashboard.tsx";
+import Teams from "./dashboard/(pages)/Teams.tsx";
+import Sidebar from "./dashboard/components/Sidebar.tsx";
+import Infobar from "./dashboard/components/infobar.tsx";
+import MyTasks from "./dashboard/(pages)/tasks.tsx";
+import LoginPage from "./Login/Page.tsx";
+import Demo from "./demo.tsx";
+import { AuthProvider } from "./context/authContext.tsx";
+import ProtectedRoute from "./ProtectedRoute.tsx";
+import { TeamProvider } from "./context/teamContext.tsx";
+import { TaskProvider } from "./context/tsaksContext.tsx";
+import Team from "./dashboard/(pages)/singleTeam.tsx";
+import TeamTasks from "./dashboard/(pages)/teamTasks.tsx";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <div className="flex overflow-hidden h-screen">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    path: "/teams",
+    element: (
+      <div className="flex overflow-hidden h-screen ">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <Teams />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    path: "/demo/:productId",
+    element: (
+      <div className="flex overflow-hidden h-screen">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <Demo />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    path: "/team/:productId",
+    element: (
+      <div className="flex overflow-hidden h-screen">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <Team />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    path: "/mytasks",
+    element: (
+      <div className="flex overflow-hidden h-screen">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <MyTasks />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    path: "/teamTasks/:TeamId",
+    element: (
+      <div className="flex overflow-hidden h-screen">
+        <Sidebar />
+        <div className="w-full bg-neutral-200 overflow-y-scroll">
+          <Infobar />
+          <div className="w-full ">
+            <TeamTasks />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+]);
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <AuthProvider>
+      <TeamProvider>
+        <TaskProvider>
+        <RouterProvider router={router} />
+        </TaskProvider>
+      </TeamProvider>
+    </AuthProvider>
+  </StrictMode>
+);

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+.curve {
+  width: 100%;
+  height: 90vh;
+  position: absolute;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, #fefefe 5%, #cee6c9 90%);
+  border-radius: 50% 50%;
+}
+
+@theme {
+  --breakpoint-xs: 35rem;
+}
