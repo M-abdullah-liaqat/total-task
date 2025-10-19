@@ -1,11 +1,8 @@
 import { Search } from "lucide-react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useState, useRef } from "react";
-import { useCookies } from "react-cookie";
 
 const Infobar = () => {
-  const [cookies, setCookie, removeCookie]  = useCookies(["_secretkey"]);
-  console.log(cookies, setCookie)
   const [showDrop, setshowDrop] = useState(false);
   const needFocus = useRef<HTMLButtonElement>(null);
   return (
@@ -48,7 +45,8 @@ const Infobar = () => {
               <li>
                 <div
                   onClick={() => {
-                    removeCookie("_secretkey", { path: "/" });
+                    document.cookie =
+                      "_secretkey=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                     window.location.href = "/";
                   }}
                   className="block px-4 text-red-600 cursor-pointer py-2 hover:bg-gray-200"
