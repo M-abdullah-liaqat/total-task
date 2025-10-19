@@ -15,6 +15,8 @@ import { TeamProvider } from "./context/teamContext.tsx";
 import { TaskProvider } from "./context/tsaksContext.tsx";
 import Team from "./dashboard/(pages)/singleTeam.tsx";
 import TeamTasks from "./dashboard/(pages)/teamTasks.tsx";
+import { CookiesProvider } from "react-cookie";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -100,12 +102,14 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <TeamProvider>
-        <TaskProvider>
-          <RouterProvider router={router} />
-        </TaskProvider>
-      </TeamProvider>
-    </AuthProvider>
+    <CookiesProvider>
+      <AuthProvider>
+        <TeamProvider>
+          <TaskProvider>
+            <RouterProvider router={router} />
+          </TaskProvider>
+        </TeamProvider>
+      </AuthProvider>
+    </CookiesProvider>
   </StrictMode>
 );
