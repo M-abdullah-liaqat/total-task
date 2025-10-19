@@ -1,22 +1,16 @@
-import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast, Bounce } from "react-toastify";
-interface Props {}
 type Inputs = {
   username: string;
   email: string;
   password: string;
 };
-const LoginPage = (props: Props) => {
-  const navigate = useNavigate();
-
+const LoginPage = () => {
   const [ISAccount, setISAccount] = useState<boolean>(true);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
   const onSignup: SubmitHandler<Inputs> = async (data) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router";
 import { useTeams } from "../../context/teamContext";
 import { useState, useEffect } from "react";
@@ -7,9 +6,9 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import { useAuth } from "../../context/authContext";
 import type { TeamType } from "../../context/teamContext";
 import Dialog from "../../components/dialog";
-interface Props {}
 
-const Team = (props: Props) => {
+
+const Team = () => {
   const [TaskDate, setTaskDate] = useState("");
   const [AssignTask, setAssignTask] = useState("");
   const [TaskProject, setTaskProject] = useState("");

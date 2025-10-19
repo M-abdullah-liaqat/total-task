@@ -9,7 +9,6 @@ import Sidebar from "./dashboard/components/Sidebar.tsx";
 import Infobar from "./dashboard/components/infobar.tsx";
 import MyTasks from "./dashboard/(pages)/tasks.tsx";
 import LoginPage from "./Login/Page.tsx";
-import Demo from "./demo.tsx";
 import { AuthProvider } from "./context/authContext.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import { TeamProvider } from "./context/teamContext.tsx";
@@ -50,20 +49,6 @@ const router = createBrowserRouter([
           <Infobar />
           <div className="w-full ">
             <Teams />
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    path: "/demo/:productId",
-    element: (
-      <div className="flex overflow-hidden h-screen">
-        <Sidebar />
-        <div className="w-full bg-neutral-200 overflow-y-scroll">
-          <Infobar />
-          <div className="w-full ">
-            <Demo />
           </div>
         </div>
       </div>
@@ -118,7 +103,7 @@ createRoot(document.getElementById("root")!).render(
     <AuthProvider>
       <TeamProvider>
         <TaskProvider>
-        <RouterProvider router={router} />
+          <RouterProvider router={router} />
         </TaskProvider>
       </TeamProvider>
     </AuthProvider>

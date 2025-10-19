@@ -1,9 +1,7 @@
 import { ClipboardList, Handshake, LayoutDashboard } from "lucide-react";
-import React from "react";
 import { Link, useLocation } from "react-router";
-interface Props {}
 
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   const { pathname } = useLocation();
   return (
     <div className="lg:w-[400px] md:w-[250px] xs:w-[300px] flex flex-col lg:px-5 px-1 py-5 gap-11">

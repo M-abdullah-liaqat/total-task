@@ -1,11 +1,8 @@
-import { ArrowBigRight } from "lucide-react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
 
-import React from "react";
-interface Props {}
 
-const Features = (props: Props) => {
+const Features = () => {
   return (
     <div className="py-10 2xl:w-[1532px] w-full justify-self-center px-8">
       <div className="text-3xl font-bold">Features</div>

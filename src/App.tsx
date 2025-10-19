@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NavBar from "./components/NavBar";
 import Features from "./components/FeaturesSection";
 import Footer from "./components/Footer";

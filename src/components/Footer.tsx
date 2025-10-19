@@ -1,8 +1,6 @@
-import React from "react";
 import NavBar from "./NavBar";
-interface Props {}
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className="bg-[#A0D495] min-h-[200px] relative">
       <div className="2xl:w-[1532px] w-full justify-self-center md:px-8 py-5 ">

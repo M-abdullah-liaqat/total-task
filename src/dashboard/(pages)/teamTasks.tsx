@@ -1,18 +1,12 @@
-import React from "react";
-import { IoIosMore } from "react-icons/io";
 import { useState, useEffect, useRef } from "react";
-import { useTasks } from "../../context/tsaksContext";
 import { useAuth } from "../../context/authContext";
 import type { taskType } from "../../context/tsaksContext";
 import { useParams } from "react-router";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import { useTeams } from "../../context/teamContext";
 import Dialog from "../../components/dialog";
-interface Props {}
-type TaskRefs = {
-  [key: string]: HTMLDivElement | null;
-};
-const TeamTasks = (props: Props) => {
+
+const TeamTasks = () => {
   const [TaskDate, setTaskDate] = useState("");
   const [AssignTask, setAssignTask] = useState("");
   const [TaskProject, setTaskProject] = useState("");
@@ -23,7 +17,6 @@ const TeamTasks = (props: Props) => {
   const [isUpdating, setisUpdating] = useState(false);
   const [UpdatetaskTitle, setUpdatetaskTitle] = useState<string>("");
   const [UpdatetaskProject, setUpdatetaskProject] = useState<string>("");
-  const handleOpenUpdate = () => setIsUpdate(true);
   const [isTsakOpen, setIsTaskOpen] = useState(false);
   const handleOpenTask = () => setIsTaskOpen(true);
   const handleCloseTask = () => setIsTaskOpen(false);
@@ -52,15 +45,18 @@ const TeamTasks = (props: Props) => {
   }, []);
   const ChangeStatus = async (status: string, user: string, id: string) => {
     if (sessionData?.email === user) {
-      const res = await fetch("https://total-task-backend.onrender.com/updatetask/status", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ status: status, Id: id }),
-      }).then((r) => r.json());
+      const res = await fetch(
+        "https://total-task-backend.onrender.com/updatetask/status",
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ status: status, Id: id }),
+        }
+      ).then((r) => r.json());
       if (res.status === 200) {
         if (AllTasks) {
-          const dummy: taskType[] | null = AllTasks?.map((item, indx) => {
+          const dummy: taskType[] | null = AllTasks?.map((item) => {
             if (item.taskId === id) {
               item.status = status;
               return item;
@@ -111,18 +107,18 @@ const TeamTasks = (props: Props) => {
     window.addEventListener("click", handleOutsideClick);
     return () => window.removeEventListener("click", handleOutsideClick);
   }, [showDrop]);
-  const setAllDropDown = (id: string) => {
-    setshowDrop((prevId) => (prevId === id ? null : id));
-  };
   const handleDeleteTask = async (Id: string, teamID: string) => {
     const team = teams?.find((doc) => doc.teamId === teamID);
     if (team?.createdBy === sessionData?.email) {
-      const res = await fetch("https://total-task-backend.onrender.com/deleteTask", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ Id: Id }),
-      }).then((r) => r.json());
+      const res = await fetch(
+        "https://total-task-backend.onrender.com/deleteTask",
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ Id: Id }),
+        }
+      ).then((r) => r.json());
       if (res.status === 200) {
         if (AllTasks) {
           const dummy = AllTasks?.filter((doc) => doc.taskId !== Id);
@@ -167,12 +163,15 @@ const TeamTasks = (props: Props) => {
         fromTeam: CurrentTeam?.teamName,
         teamId: CurrentTeam?.teamId,
       };
-      const res = await fetch("https://total-task-backend.onrender.com/createtask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ allData: newTask }),
-      }).then((r) => r.json());
+      const res = await fetch(
+        "https://total-task-backend.onrender.com/createtask",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ allData: newTask }),
+        }
+      ).then((r) => r.json());
       if (res.status === 200) {
         window.location.reload();
       } else {
@@ -204,17 +203,21 @@ const TeamTasks = (props: Props) => {
     setIsTaskOpen(false);
   };
   const HandleUpdateTask = async () => {
+    setisUpdating(true);
     if (UpdatetaskProject && UpdatetaskTitle) {
-      const res = await fetch("https://total-task-backend.onrender.com/updatetask/update", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          Id: SelectedTask?.taskId,
-          taskTitle: UpdatetaskTitle,
-          projectName: UpdatetaskProject,
-        }),
-      }).then((r) => r.json());
+      const res = await fetch(
+        "https://total-task-backend.onrender.com/updatetask/update",
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            Id: SelectedTask?.taskId,
+            taskTitle: UpdatetaskTitle,
+            projectName: UpdatetaskProject,
+          }),
+        }
+      ).then((r) => r.json());
       if (res.status === 200) {
         window.location.reload();
       } else {
@@ -243,6 +246,7 @@ const TeamTasks = (props: Props) => {
         transition: Bounce,
       });
     }
+    setisUpdating(false);
   };
   const Thetasks = AllTasks;
   const finalData =

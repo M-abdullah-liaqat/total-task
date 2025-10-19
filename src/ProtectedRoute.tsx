@@ -1,9 +1,6 @@
 import React from 'react'
 import { Navigate } from "react-router-dom";
 import { useAuth } from './context/authContext';
-interface Props {
-    
-}
 
 
 export default function ProtectedRoute({ children }: {children: React.ReactNode}) {
