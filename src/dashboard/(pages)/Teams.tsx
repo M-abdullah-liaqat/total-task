@@ -1,5 +1,4 @@
-import React from "react";
-import { IoIosMore } from "react-icons/io";
+
 import { useState, useRef } from "react";
 import { useAuth } from "../../context/authContext";
 import { useTeams } from "../../context/teamContext";
@@ -7,9 +6,8 @@ import Dialog from "../../components/dialog";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import { Link } from "react-router";
 import type { TeamType } from "../../context/teamContext";
-interface Props {}
 
-const Teams = (props: Props) => {
+const Teams = () => {
   const [selectedTeam, setselectedTeam] = useState<TeamType>();
   const { teams, loadingTeams } = useTeams();
   const [teamCerating, setteamCerating] = useState(false);
@@ -28,9 +26,7 @@ const Teams = (props: Props) => {
   };
   const [isConfirm, setIsConfirm] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
-  const handleOpenConfirm = () => setIsConfirm(true);
   const handleCloseConfirm = () => setIsConfirm(false);
-  const handleOpenUpdate = () => setIsUpdate(true);
   const handleCloseUpdate = () => {
     setOrganization("");
     setteamName("");

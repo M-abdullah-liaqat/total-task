@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: ConnectionWithChildProps) => {
   const [resData, setresData] = useState<authType>(initialValue);
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
-    const retData = fetch(`https://total-task-backend.onrender.com/check-session`, {
+   fetch(`https://total-task-backend.onrender.com/check-session`, {
       method: "GET",
       credentials: "include",
     })

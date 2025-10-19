@@ -1,15 +1,9 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { useEffect, useState } from "react";
-import Dialog from "../../components/dialog";
-interface Props {}
+import { useEffect } from "react";
 
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const {sessionData } = useAuth();
-const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const handleOpenDialog = () => setIsDialogOpen(true);
-  const handleCloseDialog = () => setIsDialogOpen(false);
+
   useEffect(() => {
     console.log(sessionData)
   }, [])
