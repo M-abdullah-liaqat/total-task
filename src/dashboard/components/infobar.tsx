@@ -43,7 +43,7 @@ const Infobar = () => {
             id="myDropdown"
             className={`dropdown-content ${
               showDrop ? "absolute" : "hidden"
-            } z-20 bg-neutral-100 divide-y divide-gray-200 rounded-lg shadow-2xl w-44 right-[0px]`}
+            } z-20 bg-neutral-100 divide-y divide-gray-200 rounded-lg shadow-2xl w-33 right-[0px]`}
           >
             <ul
               className="py-2 text-sm dark:text-gray-200"
